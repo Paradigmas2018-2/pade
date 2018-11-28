@@ -18,9 +18,9 @@ class FlaskServerProcess(multiprocessing.Process):
     def __init__(self):
         multiprocessing.Process.__init__(self)
 
-    def run(self):
-        from pade.web.flask_server import run_server
-        run_server()  
+    # def run(self):
+        # from pade.web.app import run_server
+        # run_server()  
 
 
 def signal_handler(signal, frame):

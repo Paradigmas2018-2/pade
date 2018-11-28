@@ -2,8 +2,8 @@ from pade.core.agent import Agent
 from pade.acl.aid import AID
 from pade.misc.utility import display_message, start_loop
 
-from pade.web import flask_server
-from pade.web.flask_server import AgentModel
+from pade.web import application
+# from pade.web.app.models import AgentModel
 
 
 from alchimia import wrap_engine
@@ -15,7 +15,7 @@ from pickle import loads, dumps
 import random
 import os
 
-basedir = os.path.abspath(os.path.dirname(flask_server.__file__))
+basedir = os.path.abspath(os.path.dirname(application.__file__))
 
 ENGINE = create_engine('sqlite:///{}/data.sqlite'.format(basedir))
 TWISTED_ENGINE = wrap_engine(reactor, ENGINE)
@@ -23,8 +23,8 @@ TWISTED_ENGINE.run_callable = ENGINE.run_callable
 
 METADATA = MetaData()
 METADATA.bind = ENGINE
-MESSAGES = Table('messages', METADATA, autoload=True, autoload_with=ENGINE)
-AGENTS = Table('agents', METADATA, autoload=True, autoload_with=ENGINE)
+# MESSAGES = Table('messages', METADATA, autoload=True, autoload_with=ENGINE)
+# AGENTS = Table('agents', METADATA, autoload=True, autoload_with=ENGINE)
 
 class Sniffer(Agent):
     """This is the class that implements the AMS agent."""

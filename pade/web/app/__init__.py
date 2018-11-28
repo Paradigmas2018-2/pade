@@ -12,3 +12,8 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 from app import routes, models
+
+
+@app.before_first_request
+def create_database():
+    db.create_all()

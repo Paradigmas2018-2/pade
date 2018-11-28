@@ -5,7 +5,7 @@ from pade.behaviours.protocols import TimedBehaviour, FipaRequestProtocol, FipaS
 from pade.misc.utility import display_message
 
 from pade.web import flask_server
-from pade.web.flask_server import db, Session, User
+# from pade.web.app import db, Session, User
 
 from pickle import dumps, loads
 from datetime import datetime
@@ -23,13 +23,16 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(flask_server.__file__))
 
-ENGINE = create_engine('sqlite:///{}/data.sqlite'.format(basedir))
+print ('sqlite:///' + os.path.join(basedir, 'app.db'))
+
+
+ENGINE = create_engine('sqlite:///' + os.path.join(basedir, 'app.db'))
 TWISTED_ENGINE = wrap_engine(reactor, ENGINE)
 TWISTED_ENGINE.run_callable = ENGINE.run_callable
 
 METADATA = MetaData()
 METADATA.bind = ENGINE
-AGENTS = Table('agents', METADATA, autoload=True, autoload_with=ENGINE)
+# AGENTS = Table('agent', METADATA, autoload=True, autoload_with=ENGINE)
 
 
 # Behaviour that sends the connection verification messages.

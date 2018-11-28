@@ -41,8 +41,8 @@
 
 from twisted.internet import reactor
 
-from pade.web.flask_server import run_server, db
-from pade.web.flask_server import Session, AgentModel, User
+# from pade.web.app import run_server, db
+from pade.web.app import Session, AgentModel, User
 
 from pade.core.new_ams import AMS
 from pade.core.agent import Agent
@@ -65,7 +65,7 @@ class FlaskServerProcess(multiprocessing.Process):
         multiprocessing.Process.__init__(self)
 
     def run(self):
-        run_server()
+        # run_server()
 
 class PadeSession(object):
 
